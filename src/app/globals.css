@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --text: #D9D9D9;
+  --gradient-start: #000000;
+  --gradient-end: #03101D;
+  --green-light-start: #47dec244;
+  --green-light-end: rgba(0, 255, 0, 0);
+  --gradient: linear-gradient(to bottom, var(--green-light-start), var(--green-light-end) 18%), linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+
+  --font-size--1: clamp(0.9375rem, 0.9196rem + 0.0893cqi, 1rem);
+  --font-size-0: clamp(1.125rem, 1.0893rem + 0.1786cqi, 1.25rem);
+  --font-size-1: clamp(1.35rem, 1.2893rem + 0.3036cqi, 1.5625rem);
+  --font-size-2: clamp(1.62rem, 1.5248rem + 0.4759cqi, 1.9531rem);
+  --font-size-3: clamp(1.944rem, 1.8019rem + 0.7106cqi, 2.4414rem);
+  --font-size-4: clamp(2.3328rem, 2.1274rem + 1.0271cqi, 3.0518rem);
+  --font-size-5: clamp(2.7994rem, 2.5093rem + 1.4505cqi, 3.8147rem);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #2D3748;
+    --gradient-start: #ffffff;
+    --gradient-end: #e2e8f0;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  color: var(--text);
+  background: var(--gradient);
+}
+
+h1 {
+  font-size: var(--font-size-5);
+}
+
+h2 {
+  font-size: var(--font-size-4);
+}
+
+h3 {
+  font-size: var(--font-size-3);
+}
+
+h4 {
+  font-size: var(--font-size-2);
+}
+
+p {
+  font-size: var(--font-size--1);
+}
+
+.small {
+  font-size: var(--font-size--1);
+}
+
+/* Custom colors in global CSS */
+.text-primary {
+  color: #ff6347; /* Tomato */
+}
+
+.text-secondary {
+  color: #4A5568; /* Cool gray */
+}
+
+.text-accent {
+  color: #48BB78; /* Green */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
