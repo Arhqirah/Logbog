@@ -104,7 +104,7 @@ export default function Book() {
   
       doc.setFontSize(12);
       doc.setTextColor(60, 60, 60); // Slightly lighter color for content
-      doc.text('Activities:', 14, yOffset);
+      doc.text('Aktiviteter:', 14, yOffset);
   
       // Split the text into lines for wrapping
       const activities = doc.splitTextToSize(log.activities, 180);
@@ -112,7 +112,7 @@ export default function Book() {
       yOffset += 10 + activities.length * 6; // Adjust yOffset based on text length
   
       doc.setTextColor(60, 60, 60);
-      doc.text('Team Members:', 14, yOffset);
+      doc.text('Team:', 14, yOffset);
   
       const teamMembers = log.team_members.map(member => member.name).join(', ');
       doc.text(teamMembers, 14, yOffset + 5);
