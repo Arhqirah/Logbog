@@ -28,14 +28,14 @@ import DayPage from '@/app/components/DayPage';
               className="bg-secondary text-page p-3 rounded-lg shadow-page hover:bg-secondary-dark transition-colors duration-300"
               disabled={currentPage === 0}
             >
-              Previous
+              Tilbage
             </button>
             <button
               onClick={handleNext}
               className="bg-accent text-page p-3 rounded-lg shadow-page hover:bg-accent-dark transition-colors duration-300"
               disabled={currentPage === dailyLogs.length - 1}
             >
-              Next
+              Næste
             </button>
           </div>
         </div>

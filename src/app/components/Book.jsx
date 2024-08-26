@@ -10,8 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 const teamMembersList = {
   Alice: 'https://w7.pngwing.com/pngs/910/606/png-transparent-head-the-dummy-avatar-man-tie-jacket-user.png',
-  Bob: 'https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png',
-  Charlie: 'https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png',
+  Dennis: 'https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png',
+  Alexander: 'https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png',
   Eve: 'https://w7.pngwing.com/pngs/910/606/png-transparent-head-the-dummy-avatar-man-tie-jacket-user.png',
   // Add more team members here
 };
@@ -135,9 +135,9 @@ export default function Book() {
         {/* Left Column: Form */}
         <div className="md:col-span-1 space-y-8">
           <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-2xl font-bold mb-4">Add a New Day</h2>
+            <h2 className="text-2xl font-bold mb-4">Tilføj en ny dag</h2>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Date:</label>
+              <label className="block text-gray-700 mb-2">Dato:</label>
               <input
                 type="date"
                 value={newDate}
@@ -146,7 +146,7 @@ export default function Book() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Activities:</label>
+              <label className="block text-gray-700 mb-2">Aktiviteter:</label>
               <textarea
                 value={newActivities}
                 onChange={(e) => setNewActivities(e.target.value)}
@@ -155,12 +155,12 @@ export default function Book() {
               ></textarea>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Team Members:</label>
+              <label className="block text-gray-700 mb-2">Team:</label>
               <input
                 type="text"
                 value={newTeamMembers}
                 onChange={(e) => setNewTeamMembers(e.target.value)}
-                placeholder="Comma separated, e.g., Alice, Bob"
+                placeholder="Comma separated, e.g., Dennis, Alexander"
                 className="w-full p-2 border border-gray-300 rounded"
               />
             </div>
