@@ -77,7 +77,7 @@ export default function Book() {
     doc.setTextColor(40, 40, 40); // Dark gray color for the title
   
     // Add a title to the PDF
-    doc.text('Logbook Summary', 14, yOffset);
+    doc.text('Logbog 2024', 14, yOffset);
     yOffset += 10; // Move down after the title
   
     // Add a line below the title
@@ -99,7 +99,7 @@ export default function Book() {
   
       doc.setFontSize(14);
       doc.setTextColor(40, 40, 40); // Darker color for section titles
-      doc.text(`Day ${log.day}: ${log.date}`, 14, yOffset);
+      doc.text(`Dag ${log.day}: ${log.date}`, 14, yOffset);
       yOffset += 10;
   
       doc.setFontSize(12);
