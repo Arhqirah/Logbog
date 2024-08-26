@@ -168,7 +168,7 @@ export default function Book() {
               onClick={handleAddDay}
               className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
             >
-              Add Day
+              Tilføj Dag
             </button>
           </div>
         </div>
