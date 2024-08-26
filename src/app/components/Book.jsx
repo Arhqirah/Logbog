@@ -125,7 +125,7 @@ export default function Book() {
     });
   
     // Save the PDF
-    doc.save('logbook.pdf');
+    doc.save('logbog.pdf');
   };
   
 
