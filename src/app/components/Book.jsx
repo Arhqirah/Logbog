@@ -18,13 +18,14 @@ const teamMembersList = {
 
 export default function Book() {
   const [dailyLogs, setDailyLogs] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0); // Indeks for den nuværende dag
   const [isEditing, setIsEditing] = useState(false); // For at holde styr på, om vi er i redigeringstilstand
 
   const [newDate, setNewDate] = useState('');
   const [newActivities, setNewActivities] = useState('');
   const [newTeamMembers, setNewTeamMembers] = useState('');
 
+  // Hent data fra Supabase, når komponenten indlæses
   useEffect(() => {
     const fetchDailyLogs = async () => {
       const { data, error } = await supabase.from('daily_logs').select('*').order('day', { ascending: true });
@@ -36,7 +37,7 @@ export default function Book() {
   }, []);
 
   const handleDayClick = (index) => {
-    setCurrentPage(index);
+    setCurrentPage(index); // Skift til valgt dag
     setIsEditing(false); // Stop redigeringstilstand, når vi klikker på en ny dag
   };
 
@@ -110,8 +111,66 @@ export default function Book() {
   };
 
   const handleDownloadPDF = () => {
-    // PDF-genereringskoden her...
+    const doc = new jsPDF();
+    let yOffset = 30; // Starting y position after the title
+  
+    // Set up the document's font, title, and other properties
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(40, 40, 40); // Dark gray color for the title
+  
+    // Add a title to the PDF
+    doc.text('Logbog 2024', 14, yOffset);
+    yOffset += 10; // Move down after the title
+  
+    // Add a line below the title
+    doc.setLineWidth(0.5);
+    doc.line(14, yOffset, 196, yOffset); // Horizontal line
+    yOffset += 10; // Move down after the line
+  
+    doc.setFontSize(12);
+    doc.setFont('Helvetica', 'normal');
+    doc.setTextColor(100, 100, 100); // Lighter gray color for the text
+  
+    // Loop through daily logs and add each entry to the PDF
+    dailyLogs.forEach((log, index) => {
+      // Check if adding the next log would go beyond the page height (270 is a safe margin)
+      if (yOffset + 30 > 270) {
+        doc.addPage();
+        yOffset = 20; // Reset yOffset for new page
+      }
+  
+      doc.setFontSize(14);
+      doc.setTextColor(40, 40, 40); // Darker color for section titles
+      doc.text(`Dag ${log.day}: ${log.date}`, 14, yOffset);
+      yOffset += 10;
+  
+      doc.setFontSize(12);
+      doc.setTextColor(60, 60, 60); // Slightly lighter color for content
+      doc.text('Aktiviteter:', 14, yOffset);
+  
+      // Split the text into lines for wrapping
+      const activities = doc.splitTextToSize(log.activities, 180);
+      doc.text(activities, 14, yOffset + 5);
+      yOffset += 10 + activities.length * 6; // Adjust yOffset based on text length
+  
+      doc.setTextColor(60, 60, 60);
+      doc.text('Team:', 14, yOffset);
+  
+      const teamMembers = log.team_members.map(member => member.name).join(', ');
+      doc.text(teamMembers, 14, yOffset + 5);
+      yOffset += 15; // Add some space after each log
+  
+      // Add a separator line after each day
+      doc.setLineWidth(0.5);
+      doc.line(14, yOffset, 196, yOffset); // Horizontal line
+      yOffset += 10; // Add space after the line
+    });
+  
+    // Save the PDF
+    doc.save('logbog.pdf');
   };
+  
 
   return (
     <div className="min-h-screen bg-slate-300 p-8">
