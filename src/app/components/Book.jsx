@@ -34,6 +34,9 @@ export default function Book() {
       } else {
         console.log('Fetched logs:', data); // Debug: Check if logs are fetched correctly
         setDailyLogs(data);
+        if (data.length > 0) {
+          setCurrentPage(0); // Ensure we start at the first day if data exists
+        }
       }
     };
 
@@ -108,7 +111,7 @@ export default function Book() {
       console.error('Error saving log:', error);
     } else {
       console.log('Added new log:', data); // Debug: Check if the log is added correctly
-      setDailyLogs([...dailyLogs, ...data]); // Update local state with the new log
+      setDailyLogs((prevLogs) => [...prevLogs, ...data]); // Update local state with the new log
       setNewDate('');
       setNewActivities('');
       setNewTeamMembers('');
