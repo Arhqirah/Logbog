@@ -13,23 +13,23 @@ const getDayName = (dateString) => {
 const Calendar = ({ logs, onDayClick }) => {
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: false, // Ensures it does not loop back to start
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToScroll: 1, // Scrolls one day at a time for better control
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         }
       },
       {
@@ -42,9 +42,6 @@ const Calendar = ({ logs, onDayClick }) => {
     ]
   };
 
-  // Debug: Log the logs array to see if it's being passed correctly
-  console.log('Logs:', logs);
-
   return (
     <Slider {...settings} className="w-full">
       {logs.map((log, index) => (
@@ -53,7 +50,6 @@ const Calendar = ({ logs, onDayClick }) => {
           className="aspect-w-1 aspect-h-1 bg-gradient-to-b from-gray-800 to-gray-900 p-4 rounded-lg text-center cursor-pointer hover:bg-gray-700 transition-colors duration-300 mx-2"
           onClick={() => onDayClick(index)}
         >
-          {/* Debug: Check if day names and dates are rendered correctly */}
           <p className="text-white font-bold text-lg">{getDayName(log.date)}</p>
           <p className="text-gray-400 text-sm">{log.date}</p>
         </div>
