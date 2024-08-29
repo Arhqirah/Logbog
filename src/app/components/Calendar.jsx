@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; 
 
 const getDayName = (dateString) => {
   const date = new Date(dateString);
@@ -45,7 +47,7 @@ const Calendar = ({ logs, onDayClick }) => {
       {logs.map((log, index) => (
         <div
           key={index}
-          className="aspect-w-1 aspect-h-1 bg-gradient-to-b from-gray-800 to-gray-900 p-4 rounded-lg text-center cursor-pointer hover:from-gray-600 hover:to-gray-700 transition-colors duration-300 mx-2"
+          className="aspect-w-1 aspect-h-1 bg-gradient-to-b from-gray-800 to-gray-900 p-4 rounded-lg text-center cursor-pointer hover:bg-gray-700 transition-colors duration-300 mx-2"
           onClick={() => onDayClick(index)}
         >
           <p className="text-white font-bold text-lg">{getDayName(log.date)}</p>
